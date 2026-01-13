@@ -143,6 +143,12 @@ h2{
 }
 
 /* ---------- PROJECTS ---------- */
+.project-image img{
+  width:100%;
+  max-height:180px;
+  object-fit:cover;
+}
+
 .projects{
   display:grid;
   gap:20px;
@@ -194,6 +200,7 @@ h2{
   color:white;
 }
 
+
 /* ---------- SKILLS ---------- */
 .skill{
   margin:12px 0;
@@ -219,37 +226,54 @@ h2{
   transition: width 1.2s ease;
 }
 
-/* ---------- TIMELINE ---------- */
-.timeline{
-  position: relative;
-  margin: 20px 0 20px 20px;
+
+/* ---------- PROJECTS ACCORDION ---------- */
+.projects-accordion{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  margin-top:30px;
 }
 
-.timeline::before{
-  content:"";
-  position: absolute;
-  top:0; left:0;
-  width:4px;
-  height:100%;
-  background: var(--primary);
+.projects-accordion details{
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:#f8fafc;
+  padding:12px 16px;
 }
 
-.timeline-item{
-  margin-bottom: 20px;
-  padding-left:20px;
-  position: relative;
+.dark-mode .projects-accordion details{
+  background:var(--navy);
 }
 
-.timeline-item::before{
-  content:"";
-  position:absolute;
-  left:-12px;
-  top:3px;
-  width:20px;
-  height:20px;
-  border-radius:50%;
-  background: var(--primary);
+.projects-accordion summary{
+  font-weight:800;
+  font-size:1.1rem;
+  cursor:pointer;
+  list-style:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
+
+.projects-accordion summary::-webkit-details-marker{
+  display:none;
+}
+
+.projects-accordion summary::after{
+  content:"+";
+  font-size:1.3rem;
+  transition:.2s transform;
+}
+
+.projects-accordion details[open] summary::after{
+  content:"–";
+}
+
+.projects-accordion .projects{
+  margin-top:16px;
+}
+
 
 /* ---------- SERVICES ---------- */
 .services{
@@ -319,6 +343,28 @@ button{
 button:hover{
   background: var(--primary-dark);
   color:white;
+/* ---------- LIGHTBOX ---------- */
+#lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  cursor:zoom-out;
+}
+
+#lightbox img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:12px;
+  box-shadow:0 30px 60px rgba(0,0,0,.5);
+}
+
+.project-image img{
+  cursor:zoom-in;
+}
 
 
 /* ---------- DARK MODE SWITCH ---------- */
@@ -355,7 +401,7 @@ button:hover{
 
 <header>
   <h1>Konstruktor BIM</h1>
-  <p>Modelowanie • Koordynacja • Dokumentacja wykonawcza</p>
+  <p>Modelowanie • Koordynacja • Obliczenia statyczne</p>
 </header>
 
 <main>
@@ -363,42 +409,171 @@ button:hover{
 <!-- O MNIE -->
 <section id="o-mnie">
 <h2>O mnie</h2>
-<p>Jestem konstruktorem specjalizującym się w technologiach BIM. Tworzę precyzyjne modele konstrukcyjne, koordynuję branże oraz przygotowuję dokumentację warsztatową i wykonawczą.</p>
+<p>Jestem konstruktorem specjalizującym się w technologiach BIM. Tworzę precyzyjne modele konstrukcyjne, koordynuję branże, przygotowuję dokumentację oraz przeprowadzam obliczenia statyczne konstrukcji.</p>
 <div class="btn-group" style="margin-top:20px;">
   <a href="https://service.usbim.com/link/ChI3JvacETOgt6JzWNVCnxeF">Zobacz CV</a>
+
+  <a href="https://i3ip4i.short.gy/cesium-stories">Pełna lista projektów</a>
 </div>
 </section>
+
+
 
 <!-- PROJEKTY -->
-<section id="projekty">
-<h2>Projekty</h2>
-<div class="projects">
-  <div class="project-box">
-    <h3>Lista projektów</h3>
-    <p>Projekty PW, Model budynków w 3D</p>
-    <div class="btn-group"><a href="https://i3ip4i.short.gy/cesium-stories">Lista projektów</a></div>
-  </div>
-    <div class="project-box">
-    <h3>Digital Twin Port Gdynia</p>
-    <p>Projekty PW, Model budynków w 3D</p>
-    <div class="btn-group"><a href="https://www.port.gdynia.pl/port-gdynia-pionierem-cyfryzacji/">Zobacz</a></div>
-  </div>
-</div>
+<section class="projects-accordion">
+  <h2>Przykładowe projekty</h2>
+
+  <details open>
+    <summary>2020</summary>
+    <div class="projects">
+      <div class="project-box">
+        <div class="project-image">
+          <img src="https://tiny.pl/xjbqh6yh6" alt="Projekt 2020" class="lightbox-trigger">
+        </div>
+        <h3>Budynek wielorodzinny Lipska</h3>
+      </div>
+
+      <div class="project-box">
+        <div class="project-image">
+          <img src="https://tiny.pl/xhkx5y32y" alt="Projekt 2020" class="lightbox-trigger">
+        </div>
+        <h3>Budynek wielorodzinny Saska CD</h3>
+      </div>
+
+      <div class="project-box">
+        <div class="project-image">
+          <img src="https://tiny.pl/dzwhy3jgv" alt="Projekt 2020" class="lightbox-trigger">
+        </div>
+        <h3>Budynek wielorodzinny Piltza VI</h3>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>2021</summary>
+    <div class="projects">
+      <div class="project-box">
+        <div class="project-image">
+          <img src="https://tiny.pl/h6-yd27w4" alt="Projekt 2021" class="lightbox-trigger">
+        </div>
+        <h3>Budynek wielorodzinny Piasta Kołodzieja 5</h3>
+      </div>
+
+      <div class="project-box">
+        <div class="project-image">
+          <img src="https://tiny.pl/p_gvqf9h6" alt="Projekt 2021" class="lightbox-trigger">
+        </div>
+        <h3>Budynek wielorodzinny Piasta Kołodzieja 6</h3>
+      </div>
+
+      <div class="project-box">
+        <div class="project-image">
+          <img src="https://tiny.pl/8kzxtr5yc" alt="Projekt 2021" class="lightbox-trigger">
+        </div>
+        <h3>Budynek wielorodzinny Jerzmanowskiego</h3>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>2022</summary>
+    <div class="projects">
+      <div class="project-box">
+        <div class="project-image">
+          <img src="https://tiny.pl/zwpmk3vyb" alt="Projekt 2022" class="lightbox-trigger">
+        </div>
+        <h3>Budynek wielorodzinny Walerego Sławka bud. D</h3>
+      </div>
+
+      <div class="project-box">
+        <div class="project-image">
+          <img src="https://tiny.pl/2t7jbt96q" alt="Projekt 2022" class="lightbox-trigger">
+        </div>
+        <h3>Budynek wielorodzinny Dąbska</h3>
+      </div>
+
+      <div class="project-box">
+        <div class="project-image">
+          <img src="https://tiny.pl/8kzxtr5yc" alt="Projekt 2022" class="lightbox-trigger">
+        </div>
+        <h3>Budynki wielorodzinny Banacha Ozon</h3>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>2023</summary>
+    <div class="projects">
+      <div class="project-box">
+        <div class="project-image">
+          <img src="https://tiny.pl/556q59fj2" alt="Projekt 2023" class="lightbox-trigger">
+        </div>
+        <h3>Budynek Starowiejska</h3>
+      </div>
+
+      <div class="project-box">
+        <div class="project-image">
+          <img src="https://tiny.pl/s9x9-h2bp" alt="Projekt 2023" class="lightbox-trigger">
+        </div>
+        <h3>Schody stalowe</h3>
+      </div>
+
+      <div class="project-box">
+        <div class="project-image">
+          <img src="https://tiny.pl/6rc9mhq9j" alt="Projekt 2023" class="lightbox-trigger">
+        </div>
+        <h3>Salon Audi</h3>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>2024</summary>
+    <div class="projects">
+      <div class="project-box">
+        <div class="project-image">
+          <img src="https://tiny.pl/d_nwn0w04" alt="Projekt 2024" class="lightbox-trigger">
+        </div>
+        <h3>Budynek wielorodzinny Akacjowa</h3>
+      </div>
+
+      <div class="project-box">
+        <div class="project-image">
+          <img src="https://tiny.pl/2t7jbt96q" alt="Projekt 2024" class="lightbox-trigger">
+        </div>
+        <h3>Budynek wielorodzinny Dąbska</h3>
+      </div>
+
+      <div class="project-box">
+        <div class="project-image">
+          <img src="https://tiny.pl/9c4b6n60z" alt="Projekt 2024" class="lightbox-trigger">
+        </div>
+        <h3>Budynki wielorodzinny Banacha Ozon</h3>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>2025</summary>
+    <div class="projects">
+      <div class="project-box">
+        <div class="project-image">
+          <img src="https://tiny.pl/49y691g5q" alt="Projekt 2025" class="lightbox-trigger">
+        </div>
+        <h3>Budynek wielorodzinny Banacha Ozon B</h3>
+      </div>
+
+      <div class="project-box">
+        <div class="project-image">
+          <img src="https://tiny.pl/nnmt4-xg5" alt="Projekt 2025" class="lightbox-trigger">
+        </div>
+        <h3>Budynki wielorodzinne Balicka</h3>
+      </div>
+    </div>
+  </details>
+
 </section>
 
-<!-- OŚ CZASU -->
-<section id="timeline">
-<h2>Liczba wykonanych projektów</h2>
-<div class="timeline">
-  <div class="timeline-item"><strong>2019:</strong> 2</div>
-  <div class="timeline-item"><strong>2020:</strong> 5</div>
-    <div class="timeline-item"><strong>2021:</strong> 4</div>
-      <div class="timeline-item"><strong>2022:</strong> 3</div>
-        <div class="timeline-item"><strong>2023:</strong> 4</div>
-  <div class="timeline-item"><strong>2024:</strong> 6</div>
-    <div class="timeline-item"><strong>2025:</strong> 5</div>
-</div>
-</section>
 
 <!-- USŁUGI -->
 <section id="services">
@@ -406,13 +581,11 @@ button:hover{
 <div class="services">
   <div class="service-box">Modelowanie obiektów i zbrojenia w Revit</div>
   <div class="service-box">Koordynacja projektów BIM</div>
-  <div class="service-box">Outsourcing projektów</div>
-  <div class="service-box">Wsparcie przy wdrożeniu BIM w biurze</div>
-    <div class="service-box">Szkolenia BIM</div>
+  <div class="service-box">Outsourcing projektów konstrukcyjnych</div>
+  <div class="service-box">Wsparcie przy wdrożeniu BIM w biurach</div>
+  <div class="service-box">Szkolenia z programu Revit</div>
   <div class="service-box">Obliczenia statyczne konstrukcji</div>
-      <div class="service-box">Obliczenia i projekty balustrad</div>
-  <div class="service-box">Obliczenia statyczne konstrukcji</div>
-    <div class="service-box">Szkolenia BIM</div>
+  <div class="service-box">Obliczenia i projekty balustrad</div>
   <div class="service-box">Modelowanie na bazie chmury punktów</div>
 </div>
 </section>
@@ -452,8 +625,8 @@ button:hover{
 <section id="ebook">
 <h2>Ebook</h2>
 <p>Obecnie pracuję nad podręcznikiem w formie ebooka, który będzie zawierał w sobie bazę najlepszych praktyk tworzenia modeli konstrukcyjnych,<br>
-<br>&#9989;porównania możliwych ścieżek prowadzenia projektu w programie Revit, <br>&#9989;tajniki szybkiego i bezbłędnego tworzenia skomplikowanych modeli analitycznych,
-<br>&#9989;wyciskanie 100 procent przy tworzeniu modeli na podstawie podkładów 2D.</p>
+<br>&#9989;porównania możliwych ścieżek prowadzenia projektu w programie Revit, <br>&#9989;tajniki szybkiego i bezbłędnego tworzenia skomplikowanych modeli analitycznych:
+<br>&#9989;Jak wycisnąć 100 procent z podkładów 2D przy pomocy narzędzi BIM</p>
 <div class="btn-group"><a href="https://subscribepage.io/ebookbim">Zapisz się / pobierz</a></div>
 </section>
 
